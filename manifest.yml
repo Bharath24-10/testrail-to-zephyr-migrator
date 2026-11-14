@@ -1,0 +1,32 @@
+modules:
+  jira:globalPage:
+    - key: testrail-to-zephyr-migrator-hello-world-full-page
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: testrail-to-zephyr-migrator
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+permissions:
+  scopes:
+    - read:jira-work
+    - storage:app
+  external:
+    fetch:
+      backend:
+        - address: https://api.zephyrscale.smartbear.com
+        - address: https://prod-play.zephyr4jiracloud.com
+        - address: https://*.testrail.io
+        - address: https://*.testrail.net
+        - address: https://*.testrail.com
+app:
+  runtime:
+    name: nodejs24.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/0c6cda46-1fc5-441d-9dc8-c13c64d410b6
